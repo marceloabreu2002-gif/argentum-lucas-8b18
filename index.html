@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Argentum · Proposta de parceria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #ffffff; --soft: #F6F8FB; --border: #E3E8EF; --text: #0E1A2B; --body: #33425A; --subtle: #5B6B80; --faint: #8A97A8;
+  --accent: #1F5299; --accent-dark: #14365E; --accent-light: #2E77D0; --accent-pale: #EEF4FB;
+  --amber: #B7791F; --amber-pale: #FBF4E6; --slate: #64748B; --green: #15803d; --green-pale: #F0F7F2; --red: #b91c1c;
+}
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; font-feature-settings: 'cv11', 'ss01'; }
+.num, td, .v, .big { font-variant-numeric: tabular-nums; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+.page { display: none; }
+.page.active { display: block; animation: sobe .35s ease; }
+@keyframes sobe { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+button { font-family: inherit; }
+
+/* ── Topbar ── */
+.topbar { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.94); backdrop-filter: saturate(160%) blur(12px); -webkit-backdrop-filter: saturate(160%) blur(12px); border-bottom: 1px solid var(--border); }
+.topbar-in { max-width: 1160px; margin: 0 auto; padding: 14px 32px; display: flex; align-items: center; gap: 18px; }
+.topbar-logo { height: 30px; width: auto; display: block; cursor: pointer; }
+.topbar-sep { width: 1px; height: 22px; background: var(--border); flex-shrink: 0; }
+.topbar-name { font-size: 13px; font-weight: 500; color: var(--subtle); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.topnav { margin-left: auto; display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+.topnav::-webkit-scrollbar { display: none; }
+.topnav button { flex-shrink: 0; font: 500 14px 'Inter', sans-serif; color: var(--subtle); background: none; border: none; border-radius: 8px; padding: 8px 12px; cursor: pointer; transition: color .15s, background .15s; }
+.topnav button:hover { color: var(--text); background: var(--soft); }
+.topnav button.on { color: var(--accent); background: var(--accent-pale); font-weight: 600; }
+
+/* ── Tipografia ── */
+.eyebrow { font-size: 12.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.h-section { font-size: 24px; font-weight: 700; letter-spacing: -.02em; line-height: 1.25; }
+.sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin: 72px 0 24px; flex-wrap: wrap; }
+.sec-head p { font-size: 14.5px; color: var(--subtle); max-width: 640px; margin-top: 6px; }
+.sec-head .h-section::before { content: ''; display: block; width: 34px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--accent), var(--accent-light)); margin-bottom: 14px; }
+.first { margin-top: 44px; }
+
+/* ── Faixa azul-marinho ── */
+.hero.navy, .phead.band { position: relative; overflow: hidden; color: #fff;
+  background: radial-gradient(900px 420px at 88% -20%, rgba(46,119,208,.55), transparent 62%),
+              radial-gradient(700px 360px at -5% 120%, rgba(183,121,31,.22), transparent 60%),
+              linear-gradient(155deg, #091C35 0%, #14365E 52%, #1F5299 100%); }
+.hero.navy::after, .phead.band::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size: 52px 52px; -webkit-mask-image: linear-gradient(180deg, #000 10%, transparent 90%); mask-image: linear-gradient(180deg, #000 10%, transparent 90%); }
+.hero.navy .wrap, .phead.band .wrap { position: relative; z-index: 1; }
+.hero.navy { padding: 76px 0 128px; }
+.hero.navy .eyebrow, .phead.band .eyebrow { color: #A9CBF7; }
+.hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: end; }
+.hero h1 { font-size: clamp(36px, 5.2vw, 58px); font-weight: 800; letter-spacing: -.035em; line-height: 1.04; margin: 14px 0 16px; }
+.hero-sub { font-size: 16px; color: rgba(255,255,255,.74); max-width: 560px; }
+.hero-sub strong { color: #fff; font-weight: 600; }
+.hero-fig { border-radius: 18px; padding: 30px 32px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: 0 30px 60px -30px rgba(0,0,0,.55); }
+.hero-fig .lbl { font-size: 13.5px; font-weight: 500; color: rgba(255,255,255,.8); }
+.hero-fig .big { font-size: clamp(38px, 4.4vw, 54px); font-weight: 800; letter-spacing: -.04em; line-height: 1; margin: 10px 0 14px; white-space: nowrap; }
+.hero-fig .note { font-size: 13.5px; color: rgba(255,255,255,.76); line-height: 1.5; border-top: 1px solid rgba(255,255,255,.18); padding-top: 12px; }
+.kv { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 18px; border-top: 1px solid rgba(255,255,255,.18); }
+.kv > div { padding: 14px 16px 0 0; }
+.kv .k { font-size: 12.5px; color: rgba(255,255,255,.72); font-weight: 500; line-height: 1.3; }
+.kv .v { font-size: 19px; font-weight: 800; color: #fff; margin-top: 2px; }
+.phead.band { padding: 40px 0 52px; }
+.phead.band .wrap { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: end; }
+.back { font: 500 13.5px 'Inter', sans-serif; color: rgba(255,255,255,.66); background: none; border: none; cursor: pointer; padding: 0; margin-bottom: 22px; }
+.back:hover { color: #fff; }
+.phead h2 { font-size: clamp(32px, 4vw, 44px); font-weight: 800; letter-spacing: -.03em; line-height: 1.1; margin-top: 10px; color: #fff; }
+.phead p { font-size: 16px; color: rgba(255,255,255,.74); margin-top: 10px; max-width: 700px; }
+.ph-stat { min-width: 270px; padding: 22px 26px; border-radius: 18px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.ph-stat .k { font-size: 13.5px; font-weight: 500; color: rgba(255,255,255,.74); }
+.ph-stat .v { font-size: 40px; font-weight: 800; letter-spacing: -.035em; line-height: 1.05; margin: 8px 0 6px; white-space: nowrap; }
+.ph-stat .n { font-size: 13.5px; color: rgba(255,255,255,.72); }
+
+/* ── KPIs da capa ── */
+.kpis-wrap { position: relative; z-index: 2; margin-top: -76px; }
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.kpi { position: relative; display: flex; flex-direction: column; text-align: left; background: #fff; border: 1px solid #dfe6ef; border-radius: 14px; padding: 22px 22px 18px; cursor: pointer; color: inherit; overflow: hidden; box-shadow: 0 22px 44px -26px rgba(14,26,43,.5); transition: transform .18s, box-shadow .18s; }
+.kpi::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: var(--c, var(--accent)); }
+.kpi:hover { transform: translateY(-3px); }
+.kpi .k { font-size: 13.5px; font-weight: 600; color: var(--subtle); }
+.kpi .v { font-size: 30px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; margin: 10px 0 6px; }
+.kpi .n { font-size: 13.5px; color: var(--subtle); line-height: 1.45; flex: 1; }
+.kpi .a { font-size: 13px; font-weight: 600; color: var(--accent); margin-top: 14px; }
+
+/* ── Blocos comuns ── */
+.shadow { box-shadow: 0 1px 2px rgba(14,26,43,.04), 0 12px 32px -20px rgba(14,26,43,.28); }
+.panel { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 26px 28px; }
+.panel-h { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+.panel-h .t { font-size: 15px; font-weight: 700; }
+.panel-h .s { font-size: 13.5px; color: var(--subtle); }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.four { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.two > *, .three > *, .four > * { min-width: 0; }
+.tc { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 24px 26px; display: flex; flex-direction: column; }
+.tc .k { font-size: 13.5px; font-weight: 600; color: var(--subtle); }
+.tc .v { font-size: 32px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; margin: 8px 0 8px; color: var(--accent-dark); }
+.tc .t { font-size: 17px; font-weight: 700; letter-spacing: -.01em; line-height: 1.35; margin-top: 6px; }
+.tc p { font-size: 14.5px; line-height: 1.65; color: var(--body); margin-top: 8px; }
+.tc p b { color: var(--text); }
+.tc .f { font-size: 12.5px; color: var(--faint); margin-top: auto; padding-top: 12px; }
+.tc.navy { background: linear-gradient(160deg, var(--accent-dark), var(--accent)); color: #fff; border: none; }
+.tc.navy .k, .tc.navy p { color: rgba(255,255,255,.84); }
+.tc.navy .v, .tc.navy .t, .tc.navy p b { color: #fff; }
+.tc.navy .f { color: rgba(255,255,255,.6); }
+.facts { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border); border-radius: 14px; background: #fff; }
+.fact { padding: 22px 24px; }
+.fact + .fact { border-left: 1px solid var(--border); }
+.fact .k { font-size: 13px; color: var(--subtle); font-weight: 500; }
+.fact .v { font-size: 26px; font-weight: 700; letter-spacing: -.02em; margin: 4px 0 2px; }
+.fact .n { font-size: 12.5px; color: var(--faint); line-height: 1.45; }
+.foot { font-size: 13px; color: var(--faint); line-height: 1.7; margin-top: 14px; max-width: 940px; }
+.foot strong { color: var(--subtle); font-weight: 600; }
+.howto { font-size: 13.5px; color: var(--subtle); margin-top: 14px; line-height: 1.6; }
+.howto b { color: var(--text); }
+.tag { display: inline-block; font-size: 11.5px; font-weight: 600; color: var(--accent); background: var(--accent-pale); border-radius: 999px; padding: 2px 9px; vertical-align: 1px; }
+.tag.amb { color: #8A5A12; background: var(--amber-pale); }
+.tag.gr { color: var(--green); background: var(--green-pale); }
+.tag.sl { color: var(--slate); background: var(--soft); }
+
+/* ── Botões segmentados e campos ── */
+.seg { display: inline-flex; background: var(--soft); border-radius: 10px; padding: 3px; gap: 2px; flex-wrap: wrap; }
+.seg button { font: 600 13px 'Inter', sans-serif; color: var(--subtle); background: none; border: none; border-radius: 8px; padding: 7px 13px; cursor: pointer; }
+.seg button:hover { color: var(--text); }
+.seg button.on { background: #fff; color: var(--accent); box-shadow: 0 1px 3px rgba(14,26,43,.12); }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 13px; font-weight: 600; color: var(--subtle); }
+.field input[type=number], .field input[type=text] { font: 600 16px 'Inter', sans-serif; color: var(--text); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; width: 100%; background: #fff; }
+.field input:focus { outline: 2px solid var(--accent-pale); border-color: var(--accent); }
+input[type=range] { width: 100%; accent-color: var(--accent); }
+.rng-v { font-size: 22px; font-weight: 800; letter-spacing: -.02em; color: var(--accent-dark); }
+
+/* ── Tabela ── */
+.table-wrap { border: 1px solid var(--border); border-radius: 16px; overflow-x: auto; background: #fff; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font-size: 12.5px; font-weight: 600; color: var(--subtle); padding: 14px 16px; background: var(--soft); border-bottom: 1px solid var(--border); }
+th.r, td.r { text-align: right; }
+td { padding: 13px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #FAFBFD; }
+.t-nm { font-weight: 700; }
+.t-sub { display: block; font-size: 12.5px; font-weight: 500; color: var(--faint); }
+td b { font-weight: 700; }
+
+/* ── Capa: o que ouvimos ── */
+.intro { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 8px; }
+.intro p { font-size: 16.5px; line-height: 1.75; color: var(--body); }
+.intro p + p { margin-top: 14px; }
+.intro p strong { color: var(--text); font-weight: 600; }
+.intro .quote { align-self: start; border-left: 3px solid var(--accent); padding: 4px 0 4px 22px; font-size: 19px; line-height: 1.6; color: var(--text); font-weight: 500; }
+.pr { display: flex; flex-direction: column; gap: 12px; }
+.pr-r { display: grid; grid-template-columns: 1fr 44px 1fr; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; background: #fff; }
+.pr-r > div { padding: 20px 24px; }
+.pr-a { background: var(--amber-pale); }
+.pr-b { background: var(--accent-pale); }
+.pr-l { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #8A5A12; }
+.pr-b .pr-l { color: var(--accent); }
+.pr-t { font-size: 16px; font-weight: 700; line-height: 1.4; margin-top: 4px; }
+.pr-d { font-size: 14px; color: var(--body); margin-top: 4px; line-height: 1.55; }
+.pr-go { font: 600 13px 'Inter', sans-serif; color: var(--accent); background: none; border: none; cursor: pointer; padding: 0; margin-top: 10px; }
+.pr-x { display: grid; place-items: center; font-size: 22px; color: var(--accent-light); background: linear-gradient(90deg, var(--amber-pale) 50%, var(--accent-pale) 50%); padding: 0 !important; }
+.next-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.next { display: flex; flex-direction: column; text-align: left; background: var(--soft); border: 1px solid transparent; border-radius: 14px; padding: 22px 24px; cursor: pointer; color: inherit; transition: background .18s, border-color .18s; }
+.next:hover { background: #fff; border-color: var(--border); }
+.next .t { font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
+.next .d { font-size: 14px; color: var(--subtle); margin: 4px 0 14px; flex: 1; }
+.next .a { font-size: 13px; font-weight: 600; color: var(--accent); }
+
+/* ── Quem somos ── */
+.qs-hero { padding: 64px 0 56px; }
+.qs-hero .wrap { display: block !important; }
+.qs-hero h2 { font-size: clamp(34px, 4.6vw, 54px); max-width: 860px; }
+.qs-hero p { font-size: 17px; max-width: 720px; }
+.qs-nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 40px; border-top: 1px solid rgba(255,255,255,.18); }
+.qs-nums > div { padding: 22px 24px 0 0; }
+.qs-nums > div + div { padding-left: 24px; border-left: 1px solid rgba(255,255,255,.14); }
+.qs-nums .v { font-size: clamp(34px, 4vw, 48px); font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+.qs-nums .k { font-size: 14px; color: rgba(255,255,255,.74); margin-top: 8px; }
+.qs-what { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.qs-what p { font-size: 16.5px; line-height: 1.75; color: var(--body); }
+.qs-what p + p { margin-top: 14px; }
+.qs-what p strong { color: var(--text); }
+.qs-q { border-left: 3px solid var(--accent); padding: 6px 0 6px 22px; font-size: 22px; line-height: 1.5; font-weight: 600; letter-spacing: -.01em; }
+.qs-q small { display: block; font-size: 13.5px; font-weight: 500; color: var(--subtle); margin-top: 10px; letter-spacing: 0; }
+.tline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; }
+.tline::before { content: ''; position: absolute; left: 0; right: 0; top: 23px; height: 2px; background: linear-gradient(90deg, var(--accent-pale), var(--accent), var(--accent-dark)); }
+.tl-i { position: relative; padding: 0 18px 0 0; }
+.tl-n { width: 48px; height: 48px; border-radius: 50%; background: #fff; border: 2px solid var(--accent); display: grid; place-items: center; font-size: 13px; font-weight: 800; color: var(--accent); position: relative; z-index: 1; }
+.tl-i:last-child .tl-n { background: var(--accent-dark); color: #fff; border-color: var(--accent-dark); }
+.tl-y { font-size: 26px; font-weight: 800; letter-spacing: -.03em; margin-top: 16px; color: var(--accent-dark); }
+.tl-t { font-size: 15.5px; font-weight: 700; margin-top: 2px; }
+.tl-d { font-size: 14px; color: var(--body); line-height: 1.55; margin-top: 6px; }
+.vals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.val { border: 1px solid var(--border); border-radius: 16px; padding: 22px 24px; background: #fff; }
+.val .ic { width: 40px; height: 40px; border-radius: 12px; background: var(--accent-pale); color: var(--accent); display: grid; place-items: center; font-size: 16px; font-weight: 800; margin-bottom: 14px; }
+.val .t { font-size: 17px; font-weight: 800; letter-spacing: -.01em; }
+.val .d { font-size: 14px; color: var(--body); line-height: 1.6; margin-top: 6px; }
+.verts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.vert.wide { grid-column: span 2; background: linear-gradient(160deg, var(--accent-dark), var(--accent)); border: none; color: #fff; }
+.vert.wide::before { background: #A9CBF7; }
+.vert.wide .n, .vert.wide .l { color: rgba(255,255,255,.7); border-top-color: rgba(255,255,255,.16); }
+.vert.wide .d { color: rgba(255,255,255,.88); }
+.vert { position: relative; overflow: hidden; border-radius: 18px; padding: 24px 24px 22px; background: #fff; border: 1px solid var(--border); display: flex; flex-direction: column; }
+.vert::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--accent); }
+.vert .n { font-size: 12.5px; font-weight: 700; color: var(--faint); letter-spacing: .06em; }
+.vert .t { font-size: 19px; font-weight: 800; letter-spacing: -.02em; margin: 4px 0 6px; }
+.vert .d { font-size: 14px; color: var(--body); line-height: 1.6; flex: 1; }
+.vert .l { font-size: 13px; color: var(--subtle); margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
+.trust { display: grid; grid-template-columns: 1.1fr 1fr; gap: 0; border-radius: 20px; overflow: hidden; background: linear-gradient(160deg, var(--accent-dark), var(--accent)); color: #fff; box-shadow: 0 20px 44px -22px rgba(20,54,94,.6); }
+.trust > div { padding: 32px 34px; }
+.trust > div + div { background: rgba(255,255,255,.07); border-left: 1px solid rgba(255,255,255,.14); }
+.trust-g { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 18px; }
+.trust-g .v { font-size: 36px; font-weight: 800; letter-spacing: -.035em; line-height: 1; }
+.trust-g .k { font-size: 13.5px; color: rgba(255,255,255,.78); margin-top: 6px; line-height: 1.4; }
+.trust h4 { font-size: 19px; font-weight: 800; letter-spacing: -.01em; margin-bottom: 8px; }
+.trust p { font-size: 14.5px; line-height: 1.65; color: rgba(255,255,255,.86); }
+.trust ul { list-style: none; margin-top: 14px; }
+.trust li { font-size: 14.5px; line-height: 1.55; padding: 10px 0; border-top: 1px solid rgba(255,255,255,.14); color: rgba(255,255,255,.9); }
+.trust li b { color: #fff; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.step { border-radius: 18px; padding: 24px 26px; background: var(--soft); }
+.step .n { font-size: 34px; font-weight: 800; letter-spacing: -.04em; color: var(--accent); line-height: 1; }
+.step .t { font-size: 17px; font-weight: 800; margin-top: 12px; }
+.step .d { font-size: 14.5px; color: var(--body); line-height: 1.6; margin-top: 6px; }
+.method { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.mt { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 18px; }
+.mt .n { font-size: 12.5px; font-weight: 700; color: var(--accent); }
+.mt .t { font-size: 15.5px; font-weight: 800; margin-top: 4px; }
+.mt .d { font-size: 13.5px; color: var(--body); line-height: 1.55; margin-top: 6px; }
+.where { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.wh { border: 1px solid var(--border); border-radius: 16px; padding: 22px 24px; background: #fff; }
+.wh .k { font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.wh .t { font-size: 20px; font-weight: 800; letter-spacing: -.02em; margin: 4px 0 6px; }
+.wh .d { font-size: 14px; color: var(--body); line-height: 1.6; }
+
+/* ── Atendimento ── */
+.cmp { display: grid; grid-template-columns: 220px 1fr; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; background: #fff; }
+.cmp > div { padding: 16px 20px; border-bottom: 1px solid var(--border); font-size: 14.5px; line-height: 1.5; }
+.cmp .h { font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; background: var(--soft); color: var(--subtle); }
+.cmp .h.b { color: #fff; background: var(--accent-dark); }
+.cmp .rk { font-weight: 700; }
+.cmp .old { color: var(--subtle); }
+.cmp .new { background: var(--accent-pale); color: var(--text); font-weight: 600; }
+.cmp > div:nth-last-child(-n+2) { border-bottom: none; }
+.cad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.cd { border-radius: 18px; padding: 24px 24px 20px; background: #fff; border: 1px solid var(--border); display: flex; flex-direction: column; }
+.cd.main { background: linear-gradient(160deg, var(--accent-dark), var(--accent)); color: #fff; border: none; }
+.cd .q { font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.cd.main .q { color: #A9CBF7; }
+.cd .t { font-size: 22px; font-weight: 800; letter-spacing: -.02em; margin: 4px 0 4px; }
+.cd .c { font-size: 13.5px; color: var(--subtle); }
+.cd.main .c { color: rgba(255,255,255,.76); }
+.cd ul { list-style: none; margin-top: 14px; }
+.cd li { font-size: 14px; line-height: 1.55; padding: 9px 0; border-top: 1px solid var(--border); color: var(--body); }
+.cd.main li { border-top-color: rgba(255,255,255,.16); color: rgba(255,255,255,.92); }
+.day { display: flex; flex-direction: column; justify-content: center; height: 100%; }
+.day-r .day-t { font-size: 16px; }
+.day-r { display: grid; grid-template-columns: 70px 18px 1fr; gap: 14px; align-items: start; padding: 16px 0; }
+.day-h small { display: block; font-size: 11.5px; font-weight: 600; color: var(--faint); }
+.day-h { font-size: 14px; font-weight: 800; color: var(--accent-dark); text-align: right; padding-top: 1px; }
+.day-d { position: relative; height: 100%; }
+.day-d::before { content: ''; position: absolute; left: 8px; top: -10px; bottom: -10px; width: 2px; background: var(--border); }
+.day-d i { position: absolute; left: 3px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 3px solid var(--accent); }
+.day-r:first-child .day-d::before { top: 10px; } .day-r:last-child .day-d::before { bottom: auto; height: 20px; }
+.day-t { font-size: 15px; line-height: 1.55; color: var(--body); }
+.day-t b { color: var(--text); }
+.day-t .tg { display: inline-block; font-size: 11.5px; font-weight: 700; border-radius: 999px; padding: 1px 9px; margin-right: 8px; vertical-align: 1px; background: var(--soft); color: var(--subtle); }
+.chat { background: #EAF1EA; border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+.chat-h { display: flex; align-items: center; gap: 10px; padding-bottom: 10px; border-bottom: 1px solid rgba(14,26,43,.08); }
+.chat-h i { width: 34px; height: 34px; border-radius: 50%; background: var(--accent-dark); display: grid; place-items: center; color: #fff; font-style: normal; font-weight: 800; font-size: 13px; }
+.chat-h b { font-size: 14.5px; } .chat-h small { display: block; font-size: 12px; color: var(--subtle); }
+.msg { align-self: flex-start; max-width: 92%; background: #fff; border-radius: 4px 14px 14px 14px; padding: 10px 13px; font-size: 13.5px; line-height: 1.5; color: var(--body); box-shadow: 0 1px 1px rgba(14,26,43,.08); }
+.msg b { color: var(--text); }
+.msg .tm { display: block; text-align: right; font-size: 11px; color: var(--faint); margin-top: 4px; }
+.cal15 { display: grid; grid-template-columns: repeat(15, 1fr); gap: 4px; margin-top: 16px; }
+.cal15 div { aspect-ratio: 1; border-radius: 8px; background: var(--soft); display: grid; place-items: center; font-size: 13px; font-weight: 700; color: var(--faint); }
+.cal15 div.on { background: var(--accent); color: #fff; }
+.tc.navy .cal15 div { background: rgba(255,255,255,.1); color: rgba(255,255,255,.55); }
+.tc.navy .cal15 div.on { background: #fff; color: var(--accent-dark); }
+.cal-l { display: flex; justify-content: space-between; font-size: 12.5px; color: rgba(255,255,255,.7); margin-top: 8px; }
+.meet { display: grid; grid-template-columns: 1fr 1.2fr; gap: 0; margin-top: 16px; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; background: #fff; }
+.meet > div { padding: 26px 28px; }
+.meet > div + div { background: var(--accent-pale); border-left: 1px solid var(--border); }
+.meet .k { font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.meet .t { font-size: 22px; font-weight: 800; letter-spacing: -.02em; margin: 4px 0 8px; }
+.meet p { font-size: 15px; line-height: 1.7; color: var(--body); }
+.meet-p { display: flex; flex-direction: column; }
+.meet-r { display: grid; grid-template-columns: 30px 1fr; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(14,26,43,.08); }
+.meet-r:last-child { border-bottom: none; }
+.meet-r i { width: 28px; height: 28px; border-radius: 50%; background: #fff; color: var(--accent); display: grid; place-items: center; font-style: normal; font-weight: 800; font-size: 13px; }
+.meet-r b { display: block; font-size: 14.5px; }
+.meet-r span { font-size: 13.5px; color: var(--subtle); line-height: 1.5; }
+@media (max-width: 860px) { .meet { grid-template-columns: 1fr; } .meet > div + div { border-left: none; border-top: 1px solid var(--border); } }
+@media (max-width: 560px) { .meet > div { padding: 22px 18px; } }
+.rep { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+.rep div { background: #fff; border-radius: 12px; padding: 14px 16px; border: 1px solid var(--border); }
+.rep b { display: block; font-size: 14.5px; }
+.rep span { font-size: 13px; color: var(--subtle); line-height: 1.5; }
+.onb-bar { display: flex; gap: 8px; flex-wrap: wrap; }
+.onb-b { display: inline-flex; align-items: center; gap: 8px; font: 600 14px 'Inter', sans-serif; background: #fff; border: 1px solid var(--border); border-radius: 999px; padding: 9px 16px 9px 9px; cursor: pointer; color: var(--subtle); transition: all .15s; }
+.onb-b i { width: 24px; height: 24px; border-radius: 50%; background: var(--soft); display: grid; place-items: center; font-style: normal; font-size: 12px; font-weight: 800; color: var(--accent); }
+.onb-b:hover { color: var(--text); border-color: #cfd8e4; }
+.onb-b.on { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; }
+.onb-b.on i { background: rgba(255,255,255,.18); color: #fff; }
+.onb-det { margin-top: 18px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; background: #fff; }
+.onb-det > div { padding: 26px 28px; }
+.onb-det > div + div { background: var(--accent-pale); border-left: 1px solid var(--border); }
+.onb-det .k { font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.onb-det .t { font-size: 24px; font-weight: 800; letter-spacing: -.02em; margin: 4px 0 8px; }
+.onb-det p { font-size: 15px; line-height: 1.7; color: var(--body); }
+.onb-det ul { list-style: none; }
+.onb-det li { font-size: 14.5px; line-height: 1.55; padding: 9px 0; border-bottom: 1px solid rgba(14,26,43,.08); }
+.onb-det li:last-child { border-bottom: none; }
+.onb-det.anim { animation: sobe .3s ease; }
+
+/* ── Produtos ── */
+.prd-g { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 18px; }
+.prd-g.anim { animation: sobe .3s ease; }
+.prd { border: 1px solid var(--border); border-radius: 18px; background: #fff; padding: 22px 24px 18px; display: flex; flex-direction: column; }
+.prd-h { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.prd .cd2 { font-size: 12.5px; font-weight: 700; color: var(--faint); letter-spacing: .04em; }
+.prd .t { font-size: 20px; font-weight: 800; letter-spacing: -.02em; line-height: 1.2; margin-top: 2px; }
+.prd .d { font-size: 14.5px; color: var(--body); line-height: 1.6; margin-top: 8px; }
+.prd .at { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+.prd .at > div { background: var(--soft); border-radius: 10px; padding: 9px 12px; }
+.prd .at .k { font-size: 11.5px; font-weight: 600; color: var(--subtle); text-transform: uppercase; letter-spacing: .04em; }
+.prd .at .v { font-size: 13.5px; font-weight: 700; color: var(--text); margin-top: 1px; line-height: 1.35; }
+.prd .use { font-size: 13.5px; color: var(--subtle); margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); line-height: 1.55; }
+.prd .use b { color: var(--text); }
+.prd-intro { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; }
+.no-coe { border-radius: 18px; padding: 24px 26px; background: var(--amber-pale); }
+.no-coe .k { font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #8A5A12; }
+.no-coe .t { font-size: 20px; font-weight: 800; letter-spacing: -.02em; margin: 4px 0 8px; color: #5C3A08; }
+.no-coe p { font-size: 14.5px; line-height: 1.65; color: #5C4A2E; }
+.crit { list-style: none; }
+.crit li { display: grid; grid-template-columns: 28px 1fr; gap: 10px; font-size: 14.5px; line-height: 1.55; padding: 10px 0; border-top: 1px solid var(--border); color: var(--body); }
+.crit li:first-child { border-top: none; }
+.crit li i { width: 26px; height: 26px; border-radius: 8px; background: var(--accent-pale); color: var(--accent); display: grid; place-items: center; font-style: normal; font-weight: 800; font-size: 13px; }
+.crit li b { color: var(--text); }
+.cat-h { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-top: 22px; }
+.cat-h .t { font-size: 22px; font-weight: 800; letter-spacing: -.02em; }
+.cat-h .s { font-size: 14px; color: var(--subtle); max-width: 640px; }
+
+/* ── Cartões ── */
+.ccs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.cc-w { display: flex; flex-direction: column; cursor: pointer; text-align: left; background: none; border: none; padding: 0; color: inherit; }
+.cc { position: relative; aspect-ratio: 1.586; border-radius: 16px; padding: 18px 20px; color: #fff; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 18px 36px -18px rgba(14,26,43,.55); transition: transform .2s; }
+.cc-w:hover .cc { transform: translateY(-4px) rotate(-1deg); }
+.cc::after { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.16) 46%, transparent 60%); pointer-events: none; }
+.cc .x { font-size: 18px; font-weight: 800; letter-spacing: -.02em; }
+.cc .x small { font-size: 11px; font-weight: 600; letter-spacing: .14em; opacity: .8; margin-left: 4px; }
+.cc .chip { width: 34px; height: 25px; border-radius: 5px; background: linear-gradient(135deg, #E9D9A6, #B9A15E); }
+.cc .bt { display: flex; justify-content: space-between; align-items: flex-end; }
+.cc .nm { font-size: 15px; font-weight: 800; letter-spacing: .02em; }
+.cc .vs { font-size: 12px; font-weight: 800; font-style: italic; letter-spacing: .02em; opacity: .9; text-align: right; line-height: 1.1; }
+.cc .vs small { display: block; font-style: normal; font-size: 9px; letter-spacing: .12em; font-weight: 600; }
+.cc.one { background: linear-gradient(135deg, #2E77D0, #14365E); }
+.cc.inf { background: linear-gradient(135deg, #2B3340, #0B0F16); }
+.cc.leg { background: linear-gradient(135deg, #8E949C, #3A3F46 55%, #1C1F23); }
+.cc.prv { background: linear-gradient(135deg, #1B1B1B, #000); border: 1px solid #6B5A2E; }
+.cc.prv .nm { color: #E3C77A; }
+.cc-i { padding: 14px 4px 0; }
+.cc-i .t { font-size: 17px; font-weight: 800; letter-spacing: -.01em; }
+.cc-i .e { font-size: 13.5px; color: var(--subtle); margin-top: 2px; }
+.cc-i .e b { color: var(--accent-dark); }
+.cc-w.on .cc { outline: 3px solid var(--accent); outline-offset: 3px; }
+.cc-w.dim .cc { filter: grayscale(.6) brightness(.9); opacity: .55; }
+.cc-w.dim .cc-i { opacity: .6; }
+#tCc { table-layout: fixed; min-width: 760px; }
+#tCc th:first-child, #tCc td:first-child { width: 20%; }
+.elig { display: grid; grid-template-columns: 1fr 1.3fr; gap: 28px; align-items: center; }
+.elig-o { border-radius: 16px; padding: 20px 22px; background: var(--accent-pale); }
+.elig-o .k { font-size: 13px; font-weight: 600; color: var(--subtle); }
+.elig-o .t { font-size: 22px; font-weight: 800; letter-spacing: -.02em; margin: 2px 0 6px; color: var(--accent-dark); }
+.elig-o p { font-size: 14px; color: var(--body); line-height: 1.6; }
+#tCc td:not(:first-child), #tCc th:not(:first-child) { text-align: center; }
+#tCc td { vertical-align: middle; }
+#tCc th { white-space: nowrap; }
+#tCc .ok { color: var(--green); font-weight: 800; }
+#tCc .no { color: var(--faint); }
+#tCc td.sel, #tCc th.sel { background: var(--accent-pale); }
+
+/* ── Custos ── */
+.form3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: end; }
+.sim { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; background: #fff; }
+.sim > div { padding: 26px 28px; }
+.sim > div + div { background: var(--soft); border-left: 1px solid var(--border); }
+.sim-t { font-size: 18px; font-weight: 800; letter-spacing: -.01em; margin-bottom: 4px; }
+.sim-s { font-size: 13.5px; color: var(--subtle); margin-bottom: 16px; }
+.sim .ctl { display: flex; flex-direction: column; gap: 16px; }
+.sim .ctl .l { font-size: 13px; font-weight: 600; color: var(--subtle); margin-bottom: 6px; display: block; }
+.brk { display: flex; flex-direction: column; }
+.brk-r { display: flex; justify-content: space-between; gap: 12px; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid var(--border); color: var(--body); }
+.brk-r b { color: var(--text); white-space: nowrap; }
+.brk-r small { display: block; font-size: 12.5px; color: var(--faint); }
+.brk-tot { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-top: 14px; }
+.brk-tot .k { font-size: 14px; font-weight: 700; }
+.brk-tot .v { font-size: 30px; font-weight: 800; letter-spacing: -.03em; color: var(--accent-dark); }
+.brk-p { font-size: 13px; color: var(--subtle); text-align: right; margin-top: 2px; }
+.stackbar { display: flex; height: 12px; border-radius: 6px; overflow: hidden; gap: 2px; margin: 14px 0 4px; background: #fff; }
+.stackbar span { display: block; height: 100%; }
+.leg { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12.5px; color: var(--subtle); font-weight: 600; }
+.leg i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.cost-parts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.cp { border-radius: 16px; padding: 22px 24px; background: #fff; border: 1px solid var(--border); position: relative; overflow: hidden; }
+.cp::before { content: ''; position: absolute; left: 0; top: 0; right: 0; height: 4px; background: var(--c); }
+.cp .k { font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--subtle); }
+.cp .t { font-size: 19px; font-weight: 800; letter-spacing: -.02em; margin: 4px 0 6px; }
+.cp p { font-size: 14px; color: var(--body); line-height: 1.6; }
+.ex { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.exc { border-radius: 16px; padding: 20px 22px; background: #fff; border: 1px solid var(--border); display: flex; flex-direction: column; }
+.exc .k { font-size: 12.5px; font-weight: 700; color: var(--accent); letter-spacing: .04em; text-transform: uppercase; }
+.exc .t { font-size: 15px; font-weight: 700; line-height: 1.4; margin: 4px 0 12px; flex: 1; }
+.exc .rw { display: flex; justify-content: space-between; font-size: 13.5px; color: var(--subtle); padding: 6px 0; border-top: 1px solid var(--border); }
+.exc .rw b { color: var(--text); }
+.exc .v { font-size: 26px; font-weight: 800; letter-spacing: -.03em; color: var(--accent-dark); margin-top: 10px; }
+.exc .v small { display: block; font-size: 13px; color: var(--subtle); font-weight: 600; letter-spacing: 0; margin-top: 2px; }
+
+/* ── Remuneração ── */
+.models { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.mdl { border-radius: 18px; padding: 26px 26px 22px; background: #fff; border: 1px solid var(--border); display: flex; flex-direction: column; }
+.mdl.hl { border: 2px solid var(--accent); }
+.mdl .q { font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.mdl .t { font-size: 22px; font-weight: 800; letter-spacing: -.02em; margin: 4px 0 8px; }
+.mdl .d { font-size: 14.5px; color: var(--body); line-height: 1.65; }
+.mdl .how { margin-top: 14px; padding: 14px 16px; background: var(--soft); border-radius: 12px; font-size: 13.5px; line-height: 1.6; color: var(--body); }
+.mdl .how b { color: var(--text); }
+.mdl ul { list-style: none; margin-top: 12px; flex: 1; }
+.mdl li { font-size: 14px; line-height: 1.55; padding: 8px 0 8px 22px; border-top: 1px solid var(--border); position: relative; color: var(--body); }
+.mdl li::before { position: absolute; left: 2px; top: 8px; font-weight: 800; }
+.mdl li.p::before { content: '+'; color: var(--green); }
+.mdl li.m::before { content: '–'; color: #8A5A12; }
+.mdl .for { font-size: 13px; color: var(--subtle); margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
+.mdl .for b { color: var(--text); }
+.prev { display: flex; gap: 12px; align-items: flex-start; border-radius: 14px; padding: 14px 18px; background: var(--amber-pale); color: #5C3A08; font-size: 14px; line-height: 1.55; margin-top: 18px; }
+.prev b { color: #5C3A08; }
+.prev i { flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; background: var(--amber); color: #fff; display: grid; place-items: center; font-style: normal; font-weight: 800; font-size: 13px; margin-top: 1px; }
+.parc { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.pc { border-radius: 20px; padding: 28px 30px; display: flex; flex-direction: column; }
+.pc.a { background: linear-gradient(160deg, var(--accent-dark), var(--accent)); color: #fff; box-shadow: 0 20px 44px -22px rgba(20,54,94,.6); }
+.pc.b { background: #fff; border: 1px solid var(--border); }
+.pc .q { font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.pc.a .q { color: #A9CBF7; }
+.pc .v { font-size: 52px; font-weight: 800; letter-spacing: -.045em; line-height: 1; margin: 12px 0 6px; }
+.pc.b .v { color: var(--accent-dark); }
+.pc .s { font-size: 15px; font-weight: 600; }
+.pc.a .s { color: rgba(255,255,255,.86); }
+.pc p { font-size: 14.5px; line-height: 1.65; margin-top: 12px; }
+.pc.a p { color: rgba(255,255,255,.84); }
+.pc.b p { color: var(--body); }
+.pc .rw { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; padding: 10px 0; border-top: 1px solid rgba(255,255,255,.16); margin-top: 0; }
+.pc.b .rw { border-top-color: var(--border); color: var(--subtle); }
+.pc .rws { margin-top: 16px; }
+.pc .rw b { font-weight: 700; }
+.pie-w { display: grid; grid-template-columns: 170px 1fr; gap: 24px; align-items: center; margin-top: 18px; }
+.pie-box { position: relative; }
+.pie { display: block; width: 100%; height: auto; transform: rotate(0deg); }
+.pie-c { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; font-size: 24px; font-weight: 800; letter-spacing: -.02em; color: var(--accent-dark); }
+.pie-c small { display: block; font-size: 11.5px; font-weight: 600; color: var(--subtle); letter-spacing: 0; }
+.pie-l { display: flex; flex-direction: column; gap: 6px; }
+.pie-r { display: grid; grid-template-columns: 12px 1fr auto; gap: 12px; align-items: center; padding: 10px 14px; border-radius: 12px; background: var(--soft); }
+.pie-r i { width: 12px; height: 12px; border-radius: 4px; }
+.pie-r b { display: block; font-size: 15px; }
+.pie-r small { font-size: 12.5px; color: var(--subtle); }
+.pie-r span { font-size: 18px; font-weight: 800; color: var(--accent-dark); }
+.pie-r.me { background: var(--amber-pale); }
+.pie-r.me span { color: #8A5A12; }
+@media (max-width: 560px) { .pie-w { grid-template-columns: 1fr; } .pie-box { max-width: 190px; margin: 0 auto; width: 100%; } }
+.mig { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.res4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--border); border-radius: 16px; background: #fff; margin-top: 18px; }
+.res4 > div { padding: 18px 20px; }
+.res4 > div + div { border-left: 1px solid var(--border); }
+.res4 .k { font-size: 13px; font-weight: 600; color: var(--subtle); line-height: 1.35; }
+.res4 .v { font-size: 26px; font-weight: 800; letter-spacing: -.03em; margin: 6px 0 2px; color: var(--accent-dark); }
+.res4 .n { font-size: 12.5px; color: var(--faint); line-height: 1.45; }
+.res4 > div.hl { background: var(--accent-pale); }
+.form-sim { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 22px; align-items: end; }
+
+/* ── Rodapé ── */
+.footer { border-top: 1px solid var(--border); margin-top: 96px; padding: 30px 0 48px; }
+.footer-in { max-width: 1160px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; font-size: 13px; color: var(--faint); }
+.footer-in + .footer-in { margin-top: 10px; display: block; line-height: 1.6; }
+
+/* ── Responsivo ── */
+@media (max-width: 1000px) {
+  .kpis, .cad, .ccs, .ex { grid-template-columns: repeat(2, 1fr); }
+  .method { grid-template-columns: repeat(3, 1fr); }
+  .verts, .vals { grid-template-columns: repeat(2, 1fr); }
+  .tline { grid-template-columns: 1fr; gap: 22px; }
+  .tline::before { left: 23px; right: auto; top: 0; bottom: 0; width: 2px; height: auto; background: linear-gradient(180deg, var(--accent-pale), var(--accent), var(--accent-dark)); }
+  .tl-i { display: grid; grid-template-columns: 48px 1fr; gap: 0 18px; padding: 0; }
+  .tl-i > :not(.tl-n) { grid-column: 2; }
+  .tl-n { grid-row: 1 / span 3; }
+  .tl-y { margin-top: 4px; }
+}
+@media (max-width: 860px) {
+  .hero-grid, .intro, .two, .three, .qs-what, .trust, .steps, .where, .models, .parc, .mig, .prd-intro, .elig, .onb-det, .sim { grid-template-columns: 1fr; }
+  .hero-grid { gap: 28px; }
+  .phead.band .wrap { grid-template-columns: 1fr; }
+  .ph-stat { min-width: 0; }
+  .facts, .res4 { grid-template-columns: repeat(2, 1fr); }
+  .fact:nth-child(3), .res4 > div:nth-child(3) { border-left: none; }
+  .fact:nth-child(n+3), .res4 > div:nth-child(n+3) { border-top: 1px solid var(--border); }
+  .trust > div + div, .onb-det > div + div, .sim > div + div { border-left: none; border-top: 1px solid var(--border); }
+  .trust > div + div { border-top-color: rgba(255,255,255,.14); }
+  .prd-g, .cost-parts { grid-template-columns: 1fr; }
+  .pr-r { grid-template-columns: 1fr; }
+  .pr-x { height: 36px; background: linear-gradient(180deg, var(--amber-pale) 50%, var(--accent-pale) 50%); }
+  .pr-x span { display: inline-block; transform: rotate(90deg); }
+  .next-grid { grid-template-columns: repeat(2, 1fr); }
+  .cmp { grid-template-columns: 1fr; }
+  .cmp .rk { grid-column: 1 / -1; background: var(--soft); padding: 10px 16px; font-size: 13px; }
+  .cmp .h:first-child { display: none; }
+  .form3, .form-sim { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  body { font-size: 14.5px; }
+  .wrap, .topbar-in, .footer-in { padding-left: 16px; padding-right: 16px; }
+  .topbar-sep, .topbar-name { display: none; }
+  .topbar-logo { height: 26px; }
+  .topbar-in { flex-wrap: wrap; gap: 8px 12px; padding-top: 10px; padding-bottom: 8px; }
+  .topnav { margin-left: 0; width: 100%; order: 2; gap: 2px; }
+  .topnav button { flex: 1 1 auto; padding: 8px 6px; font-size: 13px; white-space: nowrap; text-align: center; }
+  .hero.navy { padding: 44px 0 104px; }
+  .hero-fig { padding: 24px; }
+  .kv { grid-template-columns: repeat(3, 1fr); }
+  .kv .v { font-size: 16px; }
+  .kpis, .cad, .ccs, .ex, .verts, .vals, .method, .next-grid, .four { grid-template-columns: 1fr; }
+  .vert.wide { grid-column: auto; }
+  .kpi .v { font-size: 26px; }
+  .fact { padding: 18px; } .fact .v { font-size: 21px; }
+  .res4 .v { font-size: 21px; }
+  .panel, .tc { padding: 20px 16px; }
+  .sim > div, .onb-det > div { padding: 22px 18px; }
+  .sec-head { margin-top: 56px; }
+  .ph-stat .v { font-size: 32px; }
+  .qs-nums { grid-template-columns: 1fr; }
+  .qs-nums > div + div { padding-left: 0; border-left: none; border-top: 1px solid rgba(255,255,255,.14); padding-top: 18px; margin-top: 18px; }
+  .qs-nums > div { padding-top: 18px; }
+  .trust > div { padding: 24px 20px; }
+  .trust-g .v { font-size: 28px; }
+  .prd .at { grid-template-columns: 1fr; }
+  .pc { padding: 24px 20px; } .pc .v { font-size: 40px; }
+  .cal15 { grid-template-columns: repeat(8, 1fr); }
+  .day-r { grid-template-columns: 50px 18px 1fr; gap: 10px; }
+  .cmp > div { padding: 12px 14px; font-size: 13.5px; }
+  .rep { grid-template-columns: 1fr; }
+  .brk-tot .v { font-size: 26px; }
+}
+@media print {
+  .topbar { position: static; }
+  .page { display: block !important; page-break-after: always; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <img class="topbar-logo" src="data:image/png;base64,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" alt="Argentum | XP" onclick="go('quem')" />
+    <span class="topbar-sep"></span>
+    <span class="topbar-name">Proposta de parceria · Comunidade Lucas Eagle</span>
+    <nav class="topnav" id="topnav"></nav>
+  </div>
+</div>
+
+<!-- ═══════════ QUEM SOMOS ═══════════ -->
+<div class="page active" id="page-quem">
+  <section class="phead band qs-hero"><div class="wrap">
+    <div class="eyebrow">Quem somos</div>
+    <h2>Argentum: do Sul para a comunidade, com o nome de prata e o serviço de ouro</h2>
+    <p>Desde 2009 a Argentum atende pessoas e famílias, não apenas contas de investimento. Credenciada à XP, une uma equipe de assessores próxima do cliente a especialistas em cada área do patrimônio.</p>
+    <div class="qs-nums" id="qsNums"></div>
+  </div></section>
+  <section><div class="wrap">
+    <div class="sec-head first"><div><div class="h-section">O que é a Argentum?</div></div></div>
+    <div class="qs-what">
+      <div>
+        <p>A Argentum (“prata”, em latim) é um escritório de <strong>assessoria de investimentos credenciado à XP</strong>, fundado em Porto Alegre. Começou na corretora Rico, com renda variável, e em 2017 se credenciou à XP para oferecer também renda fixa e todo o portfólio da plataforma.</p>
+        <p>O atendimento é feito <strong>em comitê</strong>: o assessor é o ponto de contato, e as áreas de renda fixa, renda variável, previdência, consórcio e seguro de vida trabalham juntas na carteira de cada cliente. A Argentum também <strong>forma os próprios assessores</strong>, com metodologia e líderes de equipe dedicados a isso.</p>
+      </div>
+      <div class="qs-q">“Não queremos que você confie seu dinheiro a qualquer um.”<small>Da apresentação institucional da Argentum</small></div>
+    </div>
+
+    <div class="sec-head"><div><div class="h-section">De onde viemos</div></div></div>
+    <div class="tline" id="tline"></div>
+
+    <div class="sec-head"><div><div class="h-section">Os valores que defendemos</div></div></div>
+    <div class="vals" id="vals"></div>
+
+    <div class="sec-head"><div><div class="h-section">O ecossistema Argentum</div><p>Cada cliente da comunidade tem acesso a todas as áreas, não só a investimentos.</p></div></div>
+    <div class="verts" id="verts"></div>
+
+    <div class="sec-head"><div><div class="h-section">Confiança se mede por estrutura</div></div></div>
+    <div class="trust">
+      <div><div class="trust-g" id="trustG"></div></div>
+      <div>
+        <h4>Estrutura regulada e segregada</h4>
+        <p>A Argentum é registrada na CVM como assessoria de investimentos (Resolução CVM 178/23). Os recursos ficam <b>em nome do cliente, na XP</b>: o assessor orienta e executa por conta e ordem, mas não administra nem gere o patrimônio.</p>
+        <ul>
+          <li><b>Custódia na XP</b>, a maior plataforma de investimentos do país, com 660 escritórios credenciados</li>
+          <li><b>Mesas especializadas</b> por classe de ativo apoiando cada assessor</li>
+          <li><b>Formação contínua</b> dos assessores, com metodologia própria</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sec-head"><div><div class="h-section">Nosso método</div></div></div>
+    <div class="method" id="method"></div>
+
+    <div class="sec-head"><div><div class="h-section">O primeiro passo com a Argentum</div></div></div>
+    <div class="steps" id="steps"></div>
+
+    <div class="sec-head"><div><div class="h-section">Onde estamos</div></div></div>
+    <div class="where">
+      <div class="wh"><div class="k">Sede</div><div class="t">Porto Alegre · RS</div><div class="d">Onde a Argentum nasceu, em 2009, e de onde atende clientes de todo o Brasil.</div></div>
+      <div class="wh"><div class="k">Unidade</div><div class="t">Florianópolis · SC</div><div class="d">Rua Patrício Farias, 131, salas 301 e 302, Ed. Comercial Multicenter, Itacorubi.</div></div>
+    </div>
+    <p class="foot">Números de custódia, clientes e assessores informados pela Argentum (out/2026). Fontes: argentuminvestimentos.com, InfoMoney (21/10/2024), Brasil Inovador (19/10/2026).</p>
+  </div></section>
+</div>
+
+<!-- ═══════════ ATENDIMENTO ═══════════ -->
+<div class="page" id="page-atendimento">
+  <section class="phead band"><div class="wrap">
+    <div>
+        <div class="eyebrow">Atendimento</div>
+      <h2>Atendimento próximo e proativo</h2>
+      <p>Os pontos alinhados para a comunidade: presença frequente, relatório mensal personalizado e todas as soluções do escritório apresentadas a cada cliente.</p>
+    </div>  </div></section>
+  <section><div class="wrap">
+    <div class="sec-head first"><div><div class="h-section">Alinhamento para melhorar o atendimento e a proatividade</div><p>Os pontos combinados entre a Argentum e a comunidade.</p></div></div>
+    <div class="cmp shadow" id="cmp"></div>
+
+    <div class="sec-head"><div><div class="h-section">Onboarding no ecossistema (CROSS SELL)</div><p>Todo cliente que chega passa por todas as áreas do escritório. Toque em uma área.</p></div></div>
+    <div class="onb-bar" id="onbBar"></div>
+    <div class="onb-det shadow" id="onbDet"></div>
+  </div></section>
+</div>
+
+<!-- ═══════════ CARTÕES ═══════════ -->
+<div class="page" id="page-cartoes">
+  <section class="phead band"><div class="wrap">
+    <div>
+        <div class="eyebrow">Cartões XP · Visa Infinite</div>
+      <h2>Um cartão para cada faixa de patrimônio</h2>
+      <p><b style="color:#fff">Todos os cartões XP têm benefícios: entenda qual é o seu.</b></p>
+    </div>  </div></section>
+  <section><div class="wrap">
+    <div class="ccs first" id="ccs"></div>
+
+    <div class="sec-head"><div><div class="h-section">Qual cartão cabe no seu patrimônio</div><p>Arraste para ver a categoria que o patrimônio investido na XP libera.</p></div></div>
+    <div class="panel shadow">
+      <div class="elig">
+        <div>
+          <div class="field"><label for="patR">Patrimônio investido na XP</label></div>
+          <div class="rng-v" id="patV"></div>
+          <input type="range" id="patR" min="0" max="100" step="1" value="40" />
+          <div class="leg" style="justify-content:space-between;margin-top:4px"><span>R$ 5 mil</span><span>R$ 50 milhões</span></div>
+        </div>
+        <div class="elig-o" id="eligO"></div>
+      </div>
+    </div>
+
+    <div class="sec-head"><div><div class="h-section">Comparativo completo</div><p>Toque em um cartão acima para destacar a coluna.</p></div></div>
+    <div class="table-wrap shadow"><table id="tCc"></table></div>
+    <p class="foot">Condições da página oficial da XP (xpi.com.br/produtos/cartao-de-credito, consultada em 30/10/2026). Os percentuais máximos dependem do Turbo Benefícios; o Investback mensal depende de gasto mínimo na fatura informado no app. A aprovação passa por análise de crédito (até 14 dias úteis) e o limite acompanha os investimentos na XP. <strong>Privilege:</strong> não aparece na página oficial; dados de imprensa especializada (mar/2026), somente por convite da XP.</p>
+  </div></section>
+</div>
+
+<!-- ═══════════ PARCERIA ═══════════ -->
+<div class="page" id="page-parceria">
+  <section class="phead band"><div class="wrap">
+    <div>
+        <div class="eyebrow">Remuneração e parceria</div>
+      <h2>Como a assessoria é remunerada e como o Lucas participa</h2>
+      <p>Os três modelos de remuneração do mercado e a proposta de parceria: R$ 2 mil por milhão trazido, sem limite, e um terço vitalício da receita gerada pelos investimentos.</p>
+    </div>  </div></section>
+  <section><div class="wrap">
+    <div class="sec-head first" style="margin-top:44px"><div><div class="h-section">Os três modelos do mercado</div><p>O modelo é escolhido cliente a cliente, conforme o tamanho e o tipo de patrimônio.</p></div></div>
+    <div class="models" id="models"></div>
+
+    <div class="sec-head"><div><div class="h-section">A parceria com o Lucas</div><p>Dois ganhos que se somam: um bônus na chegada de cada milhão e um terço de toda a receita gerada pelos investimentos, de forma vitalícia.</p></div></div>
+    <div class="parc" id="parc"></div>
+
+    <div class="sec-head"><div><div class="h-section">Como o recurso chega</div></div></div>
+    <div class="mig">
+      <div class="tc shadow"><div class="k">Transferência de custódia</div><div class="t">STVM: os investimentos mudam de casa, sem vender</div><p>Ações, FIIs, títulos públicos e boa parte da renda fixa são transferidos do banco atual para a XP <b>sem resgate</b>: não há IR na transferência, não se perde a taxa contratada e o cliente continua posicionado. A Argentum cuida do pedido junto às duas instituições.</p><div class="f">Previdência muda por portabilidade, também sem IR. Fundos podem exigir resgate, conforme o caso.</div></div>
+      <div class="tc shadow"><div class="k">Dinheiro novo</div><div class="t">TED: o saldo em conta vira investimento na XP</div><p>Recursos em conta corrente, vencimentos e resgates chegam por TED e são alocados conforme o plano feito no onboarding. <b>Os dois caminhos contam para o bônus de captação</b> da parceria.</p><div class="f">A XP não cobra tarifa de TED para retiradas.</div></div>
+    </div>
+  </div></section>
+</div>
+
+<div class="footer">
+  <div class="footer-in">
+    <span>Argentum × Comunidade Lucas Eagle · Proposta de parceria</span>
+    <span>Atualizado em <span class="dt"></span></span>
+  </div>
+  <div class="footer-in">Material de uso restrito, preparado para o Lucas Eagle. Não é oferta nem recomendação individual de investimento: cada indicação depende do perfil, do prazo e dos objetivos do investidor. Rentabilidade passada não garante resultado futuro. A Argentum Assessor de Investimentos Ltda., CNPJ 10.889.338/0001-08, é registrada na CVM na forma da Resolução CVM 178/23 e mantém contrato de distribuição com a XP Investimentos CCTVM S.A. O assessor de investimentos não administra nem gere o patrimônio de investidores. Em derivativos, as perdas podem superar o valor investido. Ouvidoria XP: 0800 722 3730. Fontes: Argentum, XP, B3, Tesouro Nacional, InfoMoney, Brasil Inovador.</div>
+</div>
+
+<script>
+const el = id => document.getElementById(id);
+const NB = ' ';
+const num = (v, d = 0) => v == null ? '—' : v.toLocaleString('pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d });
+const brl = (v, d = 2) => 'R$' + NB + num(v, d);
+const mi = v => 'R$' + NB + num(v, v % 1 ? 1 : 0) + NB + 'mi';
+const pct = (v, d = 2) => num(v, d) + '%';
+
+const D = {
+  data: '30/10/2026',
+  com: { total: 120, btg: 20 },
+  arg: { cust: 3.4, cli: 15, ass: 150, desde: 2009, xp: 2017 },
+};
+document.querySelectorAll('.dt').forEach(e => e.textContent = D.data);
+
+/* ═══ NAVEGAÇÃO ═══ */
+const PAGINAS = [
+  { id: 'quem', rotulo: 'Quem somos' },
+  { id: 'atendimento', rotulo: 'Atendimento' },
+  { id: 'cartoes', rotulo: 'Cartões XP' },
+  { id: 'parceria', rotulo: 'Parceria' },
+];
+el('topnav').innerHTML = PAGINAS.map(p => `<button data-pg="${p.id}" onclick="go('${p.id}')">${p.rotulo}</button>`).join('');
+function go(id) {
+  if (!el('page-' + id)) id = 'quem';
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  el('page-' + id).classList.add('active');
+  document.querySelectorAll('#topnav button').forEach(b => b.classList.toggle('on', b.dataset.pg === id));
+  if (location.hash.slice(1) !== id) history.replaceState(null, '', '#' + id);
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+window.addEventListener('hashchange', () => go(location.hash.slice(1) || 'quem'));
+function seg(id, opts, ini, cb) {
+  const box = el(id);
+  box.innerHTML = opts.map(([v, l]) => `<button data-v="${v}" class="${v === ini ? 'on' : ''}">${l}</button>`).join('');
+  box.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { box.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); cb(b.dataset.v); }));
+  cb(ini);
+}
+
+/* ═══ QUEM SOMOS ═══ */
+el('qsNums').innerHTML = [['+R$' + NB + num(D.arg.cust, 1) + NB + 'bi', 'sob custódia'], ['+' + num(D.arg.cli) + NB + 'mil', 'clientes ativos'], ['+' + num(D.arg.ass), 'assessores de investimentos']].map(([v, k]) => `<div><div class="v">${v}</div><div class="k">${k}</div></div>`).join('');
+const TL = [
+  ['2009', 'Fundação', 'Nasce em Porto Alegre, na corretora Rico, com foco em renda variável.'],
+  ['2017', 'Credenciamento à XP', 'Entra para a rede XP e passa a oferecer renda fixa e todo o portfólio da plataforma.'],
+  ['2022', 'R$ 1 bilhão', 'Primeiro bilhão sob custódia, cinco anos depois de chegar à XP.'],
+  ['2024', 'R$ 2,2 bilhões', '10 mil clientes, unidade em Florianópolis e programa próprio de formação de assessores.'],
+  ['2026', '+R$ 3,4 bilhões', 'Mais de 150 assessores, 15 mil clientes ativos e expansão pelo Rio Grande do Sul e por Santa Catarina.'],
+];
+el('tline').innerHTML = TL.map(([y, t, d], i) => `<div class="tl-i"><div class="tl-n">${String(i + 1).padStart(2, '0')}</div><div class="tl-y">${y}</div><div class="tl-t">${t}</div><div class="tl-d">${d}</div></div>`).join('');
+const VALS = [
+  ['Atendimento personalizado', 'Acompanhamento exclusivo, com equipe qualificada e foco no objetivo específico de cada cliente.'],
+  ['Proximidade', 'Não atendemos só contas de investimento: atendemos pessoas e famílias, com relacionamento de verdade.'],
+  ['Transparência', 'Comunicação clara, com acesso completo às informações da assessoria, dos produtos e dos custos.'],
+  ['Imparcialidade', 'Ampla variedade de produtos para recomendar o que faz sentido para o perfil, e não o que está na vitrine.'],
+  ['Trabalho em comitê', 'Renda fixa, renda variável, previdência, consórcio e seguros olhando juntos a mesma carteira.'],
+  ['Formação contínua', 'Metodologia própria e líderes dedicados a formar e atualizar os assessores.'],
+];
+el('vals').innerHTML = VALS.map(([t, d], i) => `<div class="val shadow"><div class="ic">${String(i + 1).padStart(2, '0')}</div><div class="t">${t}</div><div class="d">${d}</div></div>`).join('');
+const VERTS = [
+  ['Investimentos', 'Renda fixa, renda variável, fundos e operações estruturadas, com mesas especializadas por classe.', 'CDB, títulos públicos, crédito privado, ações, FIIs'],
+  ['Planejamento', 'Diagnóstico da vida financeira: objetivos, prazos, reserva e a estratégia que liga tudo isso.', 'Ponto de partida do onboarding'],
+  ['Consórcio', 'Aquisição de imóvel, carro e reforma, alavancagem patrimonial e soluções para empresas.', 'Pessoa física e jurídica'],
+  ['Seguros e previdência', 'Seguro de vida, proteção da renda e previdência como ferramenta de sucessão.', 'Proteção e sucessão'],
+  ['Holding patrimonial', 'Estruturação de holding para concentrar os bens da família em uma empresa: proteção do patrimônio, sucessão planejada sem inventário longo e eficiência tributária.', 'Blindagem e sucessão, com especialistas parceiros'],
+  ['Internacional', 'Investimentos no exterior e dolarização de parte da carteira, para não depender de um só país.', 'Conta global e ativos lá fora'],
+  ['Empresas', 'Atendimento para a pessoa jurídica: gestão do caixa da empresa, investimentos, crédito, consórcio para frota e máquinas e seguros empresariais.', 'Caixa, crédito e proteção da empresa'],
+];
+el('verts').innerHTML = VERTS.map(([t, d, l], i) => `<div class="vert shadow${i === 0 ? ' wide' : ''}"><div class="n">${String(i + 1).padStart(2, '0')}</div><div class="t">${t}</div><div class="d">${d}</div><div class="l">${l}</div></div>`).join('');
+el('trustG').innerHTML = [['+R$' + NB + num(D.arg.cust, 1) + NB + 'bi', 'sob custódia'], ['+' + num(D.arg.cli) + NB + 'mil', 'clientes ativos'], ['+' + num(D.arg.ass), 'assessores'], [String(D.arg.desde), `no mercado, credenciada à XP desde ${D.arg.xp}`]].map(([v, k]) => `<div><div class="v">${v}</div><div class="k">${k}</div></div>`).join('');
+const MET = [
+  ['Conhecer', 'Ouvir a situação atual, avaliar a tolerância a risco e entender necessidades e objetivos.'],
+  ['Apresentar', 'Mostrar a estrutura de atendimento da Argentum e o desenho de uma carteira eficiente.'],
+  ['Propor', 'Alternativas de investimento alinhadas ao que foi levantado no primeiro passo.'],
+  ['Executar', 'Colocar o plano em prática de forma simples, com uma experiência única no escritório.'],
+  ['Acompanhar', 'Monitorar os cenários e revisar o impacto na carteira de cada cliente.'],
+];
+el('method').innerHTML = MET.map(([t, d], i) => `<div class="mt shadow"><div class="n">Passo ${i + 1}</div><div class="t">${t}</div><div class="d">${d}</div></div>`).join('');
+el('steps').innerHTML = [
+  ['Para quem está começando', 'Um diagnóstico inicial: reserva, objetivos e o primeiro desenho de carteira, sem complicação.'],
+  ['Para quem já investe', 'Análise da carteira atual, em qualquer banco, antes de qualquer troca. Nada é vendido sem motivo.'],
+  ['Para todos', 'Acompanhamento contínuo: presença na comunidade, relatório mensal personalizado e revisão da estratégia quando a vida muda.'],
+].map(([t, d], i) => `<div class="step"><div class="n">0${i + 1}</div><div class="t">${t}</div><div class="d">${d}</div></div>`).join('');
+
+/* ═══ ATENDIMENTO ═══ */
+const CMP = [
+  ['Contato', 'Frequente na comunidade, conforme alinhamento entre as partes'],
+  ['Grupo da comunidade', 'Notícias do mercado, oportunidades e relatórios de análise'],
+  ['Acompanhamento', 'Relatório mensal entre os dias 5 e 10 sobre a performance da carteira, personalizado para cada cliente'],
+  ['Reunião', 'Reunião trimestral com o assessor para revisar os resultados da carteira e planejar os próximos meses com o cliente'],
+  ['Visão do patrimônio', 'Conforme a evolução do atendimento, todos os produtos serão apresentados (cross sell)'],
+];
+el('cmp').innerHTML = `<div class="h">Ponto</div><div class="h b">Como será</div>` + CMP.map(([k, b]) => `<div class="rk">${k}</div><div class="new">${b}</div>`).join('');
+const ONB = [
+  ['Planejamento', 'Primeiro, o mapa', 'O assessor entende a vida financeira do cliente antes de falar de produto: renda, gastos, reserva de emergência, objetivos e prazos. Daí sai o desenho da carteira.', ['Diagnóstico da situação atual', 'Reserva de emergência e objetivos de curto, médio e longo prazo', 'Perfil de investidor e desenho da carteira']],
+  ['Investimentos', 'A carteira montada', 'Com o plano em mãos, a carteira é montada com a prateleira da Argentum e as mesas especializadas de renda fixa e renda variável.', ['Renda fixa, títulos públicos e crédito privado', 'Ações, FIIs, carteira recomendada e estruturas', 'Migração dos recursos de outros bancos, via STVM ou TED']],
+  ['Consórcio', 'Comprar sem juros', 'O especialista em consórcio mostra como planejar a compra de imóvel, carro ou reforma, e como usar cartas para alavancar patrimônio, também para empresas.', ['Imóvel, automóvel e reforma', 'Alavancagem patrimonial', 'Estruturação para PJ: frota, máquinas, sede']],
+  ['Seguro', 'Proteger a renda', 'O especialista em seguros avalia o que a família precisa se a renda parar: morte, invalidez, doenças graves, e a liquidez para a sucessão.', ['Seguro de vida e invalidez', 'Doenças graves e proteção da renda', 'Liquidez para inventário e sucessão']],
+  ['Holding', 'Holding patrimonial e blindagem', 'Para patrimônios maiores, os bens da família passam a ser de uma holding: o patrimônio fica protegido, a sucessão é planejada em vida, sem inventário longo, e a gestão dos imóveis e participações fica mais eficiente.', ['Estudo de viabilidade da holding patrimonial', 'Planejamento sucessório e doação de cotas', 'Previdência e seguro como complemento da sucessão']],
+  ['Internacional', 'Não depender de um só país', 'O especialista em investimentos globais mostra como dolarizar parte do patrimônio, com conta e ativos no exterior.', ['Conta internacional e câmbio', 'Ações, ETFs e renda fixa no exterior', 'Proteção cambial da carteira']],
+];
+let onbSel = 0;
+function drawOnb(anim) {
+  el('onbBar').innerHTML = ONB.map((o, i) => `<button class="onb-b${i === onbSel ? ' on' : ''}" data-i="${i}"><i>${i + 1}</i>${o[0]}</button>`).join('');
+  el('onbBar').querySelectorAll('.onb-b').forEach(b => b.addEventListener('click', () => { onbSel = +b.dataset.i; drawOnb(true); }));
+  const [n, t, p, li] = ONB[onbSel], d = el('onbDet');
+  d.innerHTML = `<div><div class="k">Etapa ${onbSel + 1} de ${ONB.length} · ${n}</div><div class="t">${t}</div><p>${p}</p></div><div><div class="k" style="margin-bottom:6px">O cliente sai com</div><ul>${li.map(x => `<li>${x}</li>`).join('')}</ul></div>`;
+  if (anim) { d.classList.remove('anim'); void d.offsetWidth; d.classList.add('anim'); }
+}
+drawOnb(false);
+
+/* ═══ CARTÕES ═══ */
+const CC = [
+  { id: 'one', nm: 'XP One', min: 5e3, minTxt: 'Para quem está começando a investir', an: 'Zero, para sempre', ib: 'Até 1,1%', pt: 'Até 1,8 por dólar', vip: '2 acessos por ano', conc: 'Visa Infinite', mat: 'Plástico', ex: '—' },
+  { id: 'inf', nm: 'XP Infinite', min: 30e3, minTxt: 'A partir de R$ 30 mil', an: 'Zero, para sempre', ib: 'Até 1,5%', pt: 'Até 3,0 por dólar', vip: '4 acessos por ano', conc: 'Visa Infinite', mat: 'Plástico', ex: '—' },
+  { id: 'leg', nm: 'XP Legacy', min: 1e6, minTxt: 'A partir de R$ 1 milhão', an: 'R$ 350/mês, 3 meses grátis', ib: '1,7% no Brasil · 5,5% no exterior', pt: '3,5 no Brasil · 10 no exterior', vip: 'Ilimitado + 12 acompanhantes', conc: 'Legacy, reconhecido pela Forbes Travel Guide', mat: 'Metal', ex: 'Fast Pass no embarque em GRU e GIG' },
+  { id: 'prv', nm: 'XP Privilege', min: 30e6, minTxt: 'Acima de R$ 30 milhões, por convite', an: 'R$ 18 mil por ano', ib: 'Não divulgado', pt: '5 no Brasil · 11 no exterior', vip: 'Ilimitado + 20 convidados', conc: 'Visa Infinite Privilege', mat: '—', ex: 'Transfer de helicóptero 1 vez ao ano e sala Visa Privilege em GRU' },
+];
+let ccSel = 'inf';
+const PAT = v => { const lo = Math.log10(5e3), hi = Math.log10(5e7); return Math.pow(10, lo + (hi - lo) * v / 100); };
+const fmtPat = v => v >= 1e6 ? 'R$' + NB + num(v / 1e6, v < 1e7 ? 1 : 0) + NB + 'milhões' : 'R$' + NB + num(Math.round(v / 1e3)) + NB + 'mil';
+function drawCc() {
+  const pat = PAT(+el('patR').value);
+  const best = [...CC].reverse().find(c => pat >= c.min) || CC[0];
+  el('ccs').innerHTML = CC.map(c => `<button class="cc-w${c.id === ccSel ? ' on' : ''}${pat < c.min ? ' dim' : ''}" data-c="${c.id}"><div class="cc ${c.id}"><div class="x">XP<small>${c.id === 'leg' ? 'METAL' : ''}</small></div><div class="chip"></div><div class="bt"><div class="nm">${c.nm.replace('XP ', '').toUpperCase()}</div><div class="vs">VISA<small>${c.id === 'prv' ? 'INFINITE PRIVILEGE' : 'INFINITE'}</small></div></div></div><div class="cc-i"><div class="t">${c.nm}</div><div class="e">${c.minTxt}</div></div></button>`).join('');
+  el('ccs').querySelectorAll('.cc-w').forEach(b => b.addEventListener('click', () => { ccSel = b.dataset.c; drawCc(); }));
+  el('patV').textContent = fmtPat(pat);
+  el('eligO').innerHTML = `<div class="k">Com esse patrimônio</div><div class="t">${best.nm}</div><p>${best.id === 'prv' ? 'Categoria por convite da XP, para patrimônios acima de R$ 30 milhões.' : `Libera o ${best.nm}. Anuidade: ${best.an.toLowerCase()}. Investback ${best.ib.toLowerCase()} e salas VIP: ${best.vip.toLowerCase()}.`}${best.id === 'one' ? ' Com R$ 30 mil investidos, o cliente sobe para o Infinite, com o dobro de acessos às salas VIP.' : ''}${best.id === 'inf' ? ' A partir de R$ 1 milhão, o Legacy libera salas VIP ilimitadas e cartão de metal.' : ''}</p>`;
+  const R = [['Patrimônio', 'minTxt'], ['Anuidade', 'an'], ['Investback máximo', 'ib'], ['Pontos XP máximos', 'pt'], ['Salas VIP', 'vip'], ['Concierge', 'conc'], ['Cartão', 'mat'], ['Exclusivo', 'ex']];
+  const COM = ['Bandeira Visa Infinite', 'Crédito e débito', 'Até 6 cartões adicionais grátis', 'Seguros de viagem Visa', 'Central de Benefícios no app XP', 'Apple Pay, Google Pay e Samsung Pay'];
+  const sc = c => c.id === ccSel ? ' class="sel"' : '';
+  el('tCc').innerHTML = `<thead><tr><th></th>${CC.map(c => `<th${sc(c)}>${c.nm}</th>`).join('')}</tr></thead><tbody>${R.map(([k, f]) => `<tr><td class="t-nm">${k}</td>${CC.map(c => `<td${sc(c)}>${c[f]}</td>`).join('')}</tr>`).join('')}${COM.map(k => `<tr><td class="t-nm">${k}</td>${CC.map(c => `<td${sc(c)}><span class="ok">✓</span></td>`).join('')}</tr>`).join('')}</tbody>`;
+}
+el('patR').addEventListener('input', drawCc);
+drawCc();
+
+/* ═══ PARCERIA ═══ */
+el('models').innerHTML = [
+  { q: 'Modelo 1', t: 'Tradicional', d: 'O cliente não paga taxa de assessoria. O escritório é remunerado pela XP com um repasse de cada produto: corretagem, taxa de distribuição de fundos, comissão de emissões de renda fixa, consórcio e seguros. <b>Cada produto tem o seu repasse.</b>', how: '<b>Na prática:</b> o custo já está dentro do produto, como a taxa de um CDB ou a corretagem de uma ordem.', pr: ['Cliente não vê cobrança separada', 'Bom para carteiras menores e iniciantes'], cn: ['A receita depende do produto escolhido', 'Exige transparência para evitar conflito de interesse'], f: 'Para: a maior parte dos clientes da comunidade' },
+  { q: 'Modelo 2', t: 'Fee fixo', d: 'O cliente paga um <b>percentual anual sobre o patrimônio assessorado</b>, cobrado de forma periódica. É o modelo que mais cresce no mercado, porque alinha o interesse do assessor ao do cliente: a receita sobe quando o patrimônio cresce.', how: '<b>Na prática:</b> uma taxa combinada e conhecida, e a escolha dos produtos deixa de depender de quanto cada um remunera.', pr: ['Interesses alinhados: o assessor ganha com o patrimônio do cliente', 'Custo previsível e explícito'], cn: ['Cobrança visível, mesmo em meses sem movimentação', 'Faz mais sentido para patrimônios maiores'], f: 'Para: patrimônios maiores e quem prefere custo explícito', hl: true },
+  { q: 'Modelo 3', t: 'Consultoria', d: 'Atendimento de <b>consultoria de valores mobiliários</b>, que orienta o patrimônio onde ele estiver, inclusive em outros bancos. A remuneração é uma taxa de consultoria combinada com o cliente.', how: '<b>Na prática:</b> o cliente que não quer ou não pode tirar tudo do banco atual é atendido mesmo assim, com uma visão única do patrimônio.', pr: ['Atende o patrimônio em qualquer instituição', 'Visão consolidada de toda a carteira'], cn: ['A execução segue em cada banco', 'Contrato e taxa específicos'], f: 'Para: patrimônio que precisa ficar em outro banco' },
+].map(m => `<div class="mdl shadow${m.hl ? ' hl' : ''}"><div class="q">${m.q}${m.hl ? ' · o mais usado hoje' : ''}</div><div class="t">${m.t}</div><div class="d">${m.d}</div><div class="how">${m.how}</div><ul>${m.pr.map(x => `<li class="p">${x}</li>`).join('')}${m.cn.map(x => `<li class="m">${x}</li>`).join('')}</ul><div class="for">${m.f.replace('Para:', '<b>Para:</b>')}</div></div>`).join('');
+const BONUS = 2000;
+const EXEMPLOS = [20, 40];
+// três fatias iguais; o círculo tem circunferência 100 para o dasharray ficar em pontos percentuais
+const PIZZA = [['Lucas', 'var(--amber)', 'parceiro'], ['Assessor', 'var(--accent-light)', 'quem atende os clientes'], ['Escritório', 'var(--accent-dark)', 'Argentum']];
+const fatias = PIZZA.map(([, c], i) => `<circle cx="21" cy="21" r="15.915" fill="none" style="stroke:${c}" stroke-width="${i === 0 ? 8 : 6.5}" stroke-dasharray="32.6 67.4" stroke-dashoffset="${num(25 - i * 33.333, 3).replace(',', '.')}"/>`).join('');
+el('parc').innerHTML = `<div class="pc a"><div class="q">Ganho 1 · na chegada</div><div class="v">R$ 2.000</div><div class="s">por R$ 1 milhão trazido, sem limite</div><p>Pago sobre cada milhão que vier de outro banco, por transferência de custódia (STVM) ou por TED. <b style="color:#fff">Não há teto: quanto mais a comunidade trouxer, maior o bônus.</b></p>
+  <div class="rws"><div class="q" style="color:#A9CBF7;margin-bottom:4px">Exemplos de bônus</div>${EXEMPLOS.map(v => `<div class="rw"><span>${v} milhões</span><b>${brl(v * BONUS)}</b></div>`).join('')}</div></div>
+  <div class="pc b"><div class="q">Ganho 2 · vitalício</div><div class="v">1/3</div><div class="s">da receita gerada pelos investimentos</div>
+  <div class="pie-w"><div class="pie-box"><svg viewBox="0 0 42 42" class="pie">${fatias}</svg><div class="pie-c"><div>1/3<small>para cada</small></div></div></div>
+  <div class="pie-l">${PIZZA.map(([n, c, s], i) => `<div class="pie-r${i === 0 ? ' me' : ''}"><i style="background:${c}"></i><div><b>${n}</b><small>${s}</small></div><span>1/3</span></div>`).join('')}</div></div>
+  <p>A receita gerada pelos investimentos dos clientes que o Lucas trouxer é dividida em três partes iguais. A participação do Lucas é <b>vitalícia</b>: ele recebe o seu terço sobre esses clientes sem prazo para acabar.</p></div>`;
+
+go(location.hash.slice(1) || 'quem');
+</script>
+</body>
+</html>
